@@ -5,9 +5,10 @@ import OrderItem from "./OrderItem";
 // A Props interface is used by one component, so it lives in that component’s file.
 interface OrderListProps {
   orders: Order[];   // a list of orders
+  onDelete: (id: number) => void; // a function passed down from the page
 }
 
-export default function OrderList({ orders }: OrderListProps) {
+export default function OrderList({ orders, onDelete }: OrderListProps) {
   // Conditional rendering, Way 1: early return
   if (orders.length === 0) {
     return <p className="muted">No orders yet.</p>;
@@ -20,7 +21,7 @@ export default function OrderList({ orders }: OrderListProps) {
       <ul className="order-list">
         {orders.map((order) => (
           // key = a stable, unique id, so React can track each card
-          <OrderItem key={order.id} order={order} />
+          <OrderItem key={order.id} order={order} onDelete={onDelete} />
         ))}
       </ul>
     </>

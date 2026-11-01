@@ -4,13 +4,14 @@ import type { Order } from "@/types/order";
 // Props shape: this component receives ONE order
 interface OrderItemProps {
   order: Order;
+  onDelete: (id: number) => void;
 }
 // Order: The box that take { id, customer, quantity, status, createdAt }
 // OrderItemProps: The box that take { order }
 
 // Only use Export Default when file only export 1 function, if Export 2 or more function, use Name Export. Never use hybrid Export 
 
-export default function OrderItem({ order }: OrderItemProps) {
+export default function OrderItem({ order, onDelete }: OrderItemProps) {
   return (
     <li className="card order-item">
       <div>
@@ -20,7 +21,13 @@ export default function OrderItem({ order }: OrderItemProps) {
         </p>
       </div>
       {/* class becomes "status status-shipped", etc. */}
-      <span className={`status status-${order.status}`}>{order.status}</span>
+      <div className="order-actions">
+        <span className={`status status-${order.status}`}>{order.status}</span>
+        {/* Arrow function: runs onDelete(order.id) only WHEN clicked */}
+        <button className="button-danger" onClick={() => onDelete(order.id)}>
+          Delete
+        </button>
+      </div>
     </li>
   );
 }

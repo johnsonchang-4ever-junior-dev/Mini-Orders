@@ -70,7 +70,7 @@ export async function createOrder(input: NewOrder): Promise<Order> {
 export async function deleteOrder(id: number): Promise<void> {
   if (USE_MOCK) {
     await wait(MOCK_DELAY_MS);
-    mockOrders = mockOrders.filter((o) => o.id !== id);
+    mockOrders = mockOrders.filter((order) => order.id !== id);
     return;
   }
   return apiFetch<void>(`/api/orders/${id}`, { method: "DELETE" });

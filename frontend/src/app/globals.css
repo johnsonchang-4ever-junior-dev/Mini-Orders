@@ -146,3 +146,21 @@ select {
 .status-pending   { color: var(--text-secondary); }
 .status-shipped   { color: var(--success); }
 .status-cancelled { color: var(--danger); }
+
+/* ---------- 6. Delete button + error text ---------- */
+.order-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Outline style: red text and border on the card's surface */
+.button-danger {
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid currentColor;
+}
+
+.error-text {
+  color: var(--danger);
+}
