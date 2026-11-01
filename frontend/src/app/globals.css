@@ -113,3 +113,36 @@ select {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+/* ---------- 5. Orders list ---------- */
+.muted {
+  color: var(--text-secondary);
+  margin: 4px 0 0;
+}
+
+.order-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+  max-width: 560px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Status badge: the border uses the same colour as the text */
+.status {
+  font-size: 0.85rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+
+.status-pending   { color: var(--text-secondary); }
+.status-shipped   { color: var(--success); }
+.status-cancelled { color: var(--danger); }

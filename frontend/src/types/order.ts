@@ -20,3 +20,5 @@ export interface Order {
 // Omit<...> = "Order, minus these fields", because the backend server decides
 // id, status and createdAt, not the user.
 export type NewOrder = Omit<Order, "id" | "status" | "createdAt">;
+
+
