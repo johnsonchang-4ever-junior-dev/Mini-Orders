@@ -1,6 +1,6 @@
 // src/app/orders/page.tsx  ->  URL: /orders
 import type { Order } from "@/types/order";
-import OrderList from "@/components/OrderList";
+import OrderList from "@/components/orders/OrderList";
 
 // Temporary hardcoded data. Part 3 moves this into the mock service.
 const sampleOrders: Order[] = [
