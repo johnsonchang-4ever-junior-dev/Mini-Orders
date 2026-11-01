@@ -36,7 +36,7 @@ export async function getOrders(): Promise<Order[]> {
 export async function getOrder(id: number): Promise<Order> {
   if (USE_MOCK) {
     await wait(MOCK_DELAY_MS);
-    const found = mockOrders.find((o) => o.id === id);
+    const found = mockOrders.find((order) => order.id === id);
     if (!found) throw new Error(`Order ${id} not found`); // like a 404
     return found;
   }
