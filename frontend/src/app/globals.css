@@ -164,3 +164,21 @@ select {
 .error-text {
   color: var(--danger);
 }
+
+/* ---------- 7. Order form ---------- */
+.order-form {
+  display: grid;
+  gap: 8px;
+  max-width: 560px;
+  margin-bottom: 16px;
+}
+
+.order-form label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

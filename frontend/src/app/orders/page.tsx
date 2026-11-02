@@ -3,13 +3,15 @@
 
 import useOrders from "@/hooks/useOrders";
 import OrderList from "@/components/orders/OrderList";
+import OrderForm from "@/components/orders/OrderForm";
 
 export default function OrdersPage() {
-  const { orders, loading, error, removeOrder } = useOrders();
+  const { orders, loading, error, addOrder, removeOrder } = useOrders();
 
   return (
     <main>
       <h1>Orders</h1>
+      <OrderForm onAdd={addOrder} />
       {loading && <p className="muted">Loading orders...</p>}
       {error && <p className="error-text">Error: {error}</p>}
       {!loading && !error && <OrderList orders={orders} onDelete={removeOrder} />}
