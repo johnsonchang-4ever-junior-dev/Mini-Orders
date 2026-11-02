@@ -216,3 +216,11 @@ button:disabled {
   color: var(--accent-text);
   border-color: var(--accent);
 }
+
+/* ---------- 9. Pagination ---------- */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}

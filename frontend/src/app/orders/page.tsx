@@ -8,6 +8,10 @@ import OrderList from "@/components/orders/OrderList";
 import OrderForm from "@/components/orders/OrderForm";
 import SearchBox from "@/components/orders/SearchBox";
 import StatusTabs from "@/components/orders/StatusTabs";
+import Pagination from "@/components/orders/Pagination";
+
+const PAGE_SIZE = 10; // orders per page
+
 
 export default function OrdersPage() {
   const { orders, loading, error, addOrder, removeOrder } = useOrders();
@@ -15,6 +19,7 @@ export default function OrdersPage() {
   // What the user picked
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState<StatusFilter>("all");
+  const [currentPage, setCurrentPage] = useState(1);
 
   // The input updates instantly; the list uses this "lagging" copy
   const deferredSearch = useDeferredValue(search);
@@ -30,17 +35,34 @@ export default function OrdersPage() {
     );
   }, [orders, deferredSearch, status]);
 
+  // Pagination: work out which 10 orders to show
+  const totalPages = Math.max(1, Math.ceil(visibleOrders.length / PAGE_SIZE));
+  const safePage = Math.min(currentPage, totalPages); // e.g. after deleting the last order on page 2
+  const pageOrders = visibleOrders.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
+  // A new search or tab starts again at page 1
+  function handleSearchChange(text: string) {
+    setSearch(text);
+    setCurrentPage(1);
+  }
+
+  function handleStatusChange(tab: StatusFilter) {
+    setStatus(tab);
+    setCurrentPage(1);
+  }
+
   return (
     <main>
       <h1>Orders</h1>
       <OrderForm onAdd={addOrder} />
-      <SearchBox value={search} onChange={setSearch} />
-      <StatusTabs value={status} onChange={setStatus} />
+      <SearchBox value={search} onChange={handleSearchChange} />
+      <StatusTabs value={status} onChange={handleStatusChange} />
       {loading && <p className="muted">Loading orders...</p>}
       {error && <p className="error-text">Error: {error}</p>}
       {!loading && !error && (
         <div className={isStale ? "stale" : undefined}> 
-          <OrderList orders={visibleOrders} onDelete={removeOrder} />
+          <OrderList orders={pageOrders} totalCount={visibleOrders.length} onDelete={removeOrder} />
+          <Pagination currentPage={safePage} totalPages={totalPages} onPageChange={setCurrentPage} />
         </div>
       )}
     </main>

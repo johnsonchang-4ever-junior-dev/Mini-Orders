@@ -10,7 +10,7 @@ const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK === "true";
 // ---------- Mock data (only used when USE_MOCK is true) ----------
 const MOCK_DELAY_MS = 500; // mock-only: pretend the network takes half a second
 
-let mockOrders: Order[] = Array.from({ length: 5000 }, (_, index) => ({
+let unUsedmockOrders: Order[] = Array.from({ length: 5000 }, (_, index) => ({
   id: index + 1,
   customer: `Customer ${index + 1}`,
   quantity: 1,
@@ -18,7 +18,7 @@ let mockOrders: Order[] = Array.from({ length: 5000 }, (_, index) => ({
   createdAt: "2026-11-01T00:00:00Z",
 }));
 
-let unusedSampleOrders: Order[] = [
+let mockOrders: Order[] = [
   { id: 1, customer: "Mia", quantity: 2, status: "pending",   createdAt: "2026-10-29T09:15:00Z" },
   { id: 2, customer: "Leo", quantity: 5, status: "shipped",   createdAt: "2026-10-30T14:40:00Z" },
   { id: 3, customer: "Ava", quantity: 1, status: "cancelled", createdAt: "2026-10-31T08:05:00Z" },
