@@ -27,6 +27,8 @@ export default function StatusTabs({ value, onChange }: StatusTabsProps) {
         <button
           key={tab}
           type="button"
+          data-action="filter-status"
+          data-status={tab}
           className={tab === value ? "tab tab-active" : "tab"}
           aria-pressed={tab === value}
           onClick={() => selectTab(tab)}

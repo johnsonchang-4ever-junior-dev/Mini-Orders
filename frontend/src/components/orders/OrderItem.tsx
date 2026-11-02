@@ -17,7 +17,7 @@ function OrderItem({ order, onDelete }: OrderItemProps) {
   return (
     <li className="card order-item">
       <div>
-        <Link href={`/orders/${order.id}`}>
+        <Link href={`/orders/${order.id}`} data-action="open-order" data-order-id={order.id}>
           <strong>{order.customer}</strong>
         </Link>
         <p className="muted">
@@ -30,6 +30,8 @@ function OrderItem({ order, onDelete }: OrderItemProps) {
         {/* Arrow function: runs onDelete(order.id) only WHEN clicked */}
         <button
           className="button-danger"
+          data-action="delete-order"
+          data-order-id={order.id}
           aria-label={`Delete ${order.customer}`}
           onClick={() => onDelete(order.id)}
         >

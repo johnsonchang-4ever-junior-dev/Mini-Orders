@@ -4,6 +4,7 @@ import Link from "next/link";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import ThemeToggle from "@/components/ThemeToggle";
+import ActionLogger from "@/components/ActionLogger";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
         <ThemeProvider>
+          <ActionLogger />
           <header className="site-header">
             <Link href="/">Mini Orders</Link>
             <Link href="/orders">Orders</Link>

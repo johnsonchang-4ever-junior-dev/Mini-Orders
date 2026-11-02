@@ -7,7 +7,7 @@ export default function ThemeToggle() {
   const { theme, toggle } = useTheme(); // tune in to the radio station
 
   return (
-    <button type="button" className="tab" onClick={toggle}>
+    <button type="button" className="tab" data-action="toggle-theme" onClick={toggle}>
       Theme: {theme ?? "Default"}
     </button>
   );

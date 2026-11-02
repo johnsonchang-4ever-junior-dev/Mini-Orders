@@ -13,6 +13,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
       <button
         type="button"
         aria-label="Previous page"
+        data-action="page-previous"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
       >
@@ -26,6 +27,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
       <button
         type="button"
         aria-label="Next page"
+        data-action="page-next"
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
       >

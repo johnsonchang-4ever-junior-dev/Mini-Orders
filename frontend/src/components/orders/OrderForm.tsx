@@ -60,7 +60,7 @@ export default function OrderForm({ onAdd }: OrderFormProps) {
         />
       </div>
 
-      <button type="submit" disabled={saving}>
+      <button type="submit" disabled={saving} data-action="add-order">
         {saving ? "Adding..." : "Add order"}
       </button>
 
