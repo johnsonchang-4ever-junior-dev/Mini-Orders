@@ -279,3 +279,15 @@ button:disabled {
 .site-header button {
   margin-left: auto;
 }
+
+/* ---------- 11. Order detail ---------- */
+.order-detail {
+  display: flex;            /* VStack */
+  flex-direction: column;
+  align-items: flex-start;  /* VStack(alignment: .leading) */
+  gap: 8px;
+}
+
+.order-detail p {
+  margin: 0;
+}

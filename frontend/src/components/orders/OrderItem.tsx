@@ -1,5 +1,6 @@
 // src/components/OrderItem.tsx
 import { memo } from "react";
+import Link from "next/link";
 import type { Order } from "@/types/order";
 
 // Props shape: this component receives ONE order
@@ -16,7 +17,9 @@ function OrderItem({ order, onDelete }: OrderItemProps) {
   return (
     <li className="card order-item">
       <div>
-        <strong>{order.customer}</strong>
+        <Link href={`/orders/${order.id}`}>
+          <strong>{order.customer}</strong>
+        </Link>
         <p className="muted">
           Qty {order.quantity} · {order.createdAt.slice(0, 10)}
         </p>
