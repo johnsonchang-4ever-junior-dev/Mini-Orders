@@ -1,0 +1,13 @@
+# docker-compose.yml  (repo root)
+# Values come from the root .env file (not committed)
+services:
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_USE_MOCK: ${NEXT_PUBLIC_USE_MOCK}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+        NEXT_PUBLIC_EVENTS_URL: ${NEXT_PUBLIC_EVENTS_URL}
+    ports:
+      - "${FRONTEND_PORT}:3000"   # your computer's port : the container's port
+    restart: unless-stopped
