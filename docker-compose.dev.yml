@@ -1,0 +1,18 @@
+# docker-compose.dev.yml  (repo root)
+# Development: next dev with hot reload. Run with:
+#   docker compose -f docker-compose.dev.yml up --build
+services:
+  frontend:
+    build:
+      context: ./frontend
+      target: dev                 # stop at the "dev" stage of the Dockerfile
+    environment:                  # read by next dev when it starts (no rebuild needed)
+      NEXT_PUBLIC_USE_MOCK: ${NEXT_PUBLIC_USE_MOCK}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+      NEXT_PUBLIC_EVENTS_URL: ${NEXT_PUBLIC_EVENTS_URL}
+    ports:
+      - "${FRONTEND_PORT}:3000"
+    volumes:
+      - ./frontend:/app           # your Mac's code, live inside the container
+      - /app/node_modules         # ...but keep the container's own Linux node_modules
+      - /app/.next                # ...and its own build cache

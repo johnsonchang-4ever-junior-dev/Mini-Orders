@@ -3,8 +3,15 @@
   WORKDIR /app
   COPY package.json package-lock.json ./
   RUN npm ci
+
+# ---------- Dev stage: next dev with hot reload (used by docker-compose.dev.yml) ----------
+  FROM dependencies AS dev
+  COPY . .
+  EXPOSE 3000
+  CMD ["npm", "run", "dev"]
+
+# ---------- Stage 2: build the app ----------
   
-  # ---------- Stage 2: build the app ----------
   FROM node:22-alpine AS builder
   WORKDIR /app
   COPY --from=dependencies /app/node_modules ./node_modules
