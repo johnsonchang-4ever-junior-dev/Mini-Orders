@@ -1,4 +1,5 @@
 // src/components/OrderItem.tsx
+import { memo } from "react";
 import type { Order } from "@/types/order";
 
 // Props shape: this component receives ONE order
@@ -11,7 +12,7 @@ interface OrderItemProps {
 
 // Only use Export Default when file only export 1 function, if Export 2 or more function, use Name Export. Never use hybrid Export 
 
-export default function OrderItem({ order, onDelete }: OrderItemProps) {
+function OrderItem({ order, onDelete }: OrderItemProps) {
   return (
     <li className="card order-item">
       <div>
@@ -31,3 +32,7 @@ export default function OrderItem({ order, onDelete }: OrderItemProps) {
     </li>
   );
 }
+
+
+// memo: skip re-rendering when order and onDelete are the same as last time
+export default memo(OrderItem);

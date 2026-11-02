@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
+import { ThemeProvider } from "@/context/ThemeContext";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +23,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>
+          <header className="site-header">
+            <Link href="/">Mini Orders</Link>
+            <Link href="/orders">Orders</Link>
+            <ThemeToggle />
+          </header>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
