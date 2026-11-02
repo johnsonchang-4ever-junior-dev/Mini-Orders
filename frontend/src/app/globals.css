@@ -65,8 +65,9 @@
 }
 
 body {
-  margin: 0;
-  padding: 24px;
+  max-width: 720px;   /* content column never gets wider than this */
+  margin: 0 auto;     /* auto left + right = centred */
+  padding: 32px 16px;
   background: var(--background);
   color: var(--text-primary);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
@@ -88,6 +89,21 @@ a {
   border-radius: 8px;
   padding: 16px;
   box-shadow: var(--shadow);
+}
+
+/* Buttons and inputs don't copy the page font by default */
+button,
+input {
+  font: inherit;
+}
+
+h1 {
+  margin: 0 0 20px;
+}
+
+label {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
 }
 
 button {
@@ -126,7 +142,7 @@ select {
   margin: 0;
   display: grid;
   gap: 12px;
-  max-width: 560px;
+  margin-top: 8px;
 }
 
 .order-item {
@@ -141,6 +157,7 @@ select {
   padding: 2px 8px;
   border-radius: 999px;
   border: 1px solid currentColor;
+  text-transform: capitalize;
 }
 
 .status-pending   { color: var(--text-secondary); }
@@ -167,15 +184,33 @@ select {
 
 /* ---------- 7. Order form ---------- */
 .order-form {
-  display: grid;
-  gap: 8px;
-  max-width: 560px;
-  margin-bottom: 16px;
+  display: flex;          /* HStack */
+  flex-wrap: wrap;        /* wrap onto a new line on narrow screens */
+  align-items: flex-end;  /* line the bottoms up: inputs + button */
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
-.order-form label {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
+/* One label + input pair = a VStack */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-grow {
+  flex: 1;            /* take all the spare width, like a Spacer() */
+  min-width: 180px;
+}
+
+.field-quantity {
+  width: 96px;
+}
+
+/* The error takes a whole line of its own */
+.order-form .error-text {
+  flex-basis: 100%;
+  margin: 0;
 }
 
 button:disabled {
@@ -184,23 +219,26 @@ button:disabled {
 }
 
 /* ---------- 8. Search + status tabs ---------- */
-.search-box {
-  display: grid;
-  gap: 4px;
-  max-width: 560px;
-  margin-bottom: 12px;
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
-.search-box label {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
+.search-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 200px;
 }
 
 .status-tabs {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 16px;
 }
 
 /* Unselected tab: outline only */
@@ -208,6 +246,7 @@ button:disabled {
   background: transparent;
   color: var(--text-primary);
   border: 1px solid var(--border);
+  text-transform: capitalize;
 }
 
 /* Selected tab: filled with the accent colour */
@@ -220,6 +259,7 @@ button:disabled {
 /* ---------- 9. Pagination ---------- */
 .pagination {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 12px;
   margin-top: 16px;

@@ -40,21 +40,25 @@ export default function OrderForm({ onAdd }: OrderFormProps) {
 
   return (
     <form className="card order-form" onSubmit={handleSubmit}>
-      <label htmlFor="customer">Customer</label>
-      <input
-        id="customer"
-        ref={customerInputRef}
-        value={customer}
-        onChange={(event) => setCustomer(event.target.value)}
-      />
+      <div className="field field-grow">
+        <label htmlFor="customer">Customer</label>
+        <input
+          id="customer"
+          ref={customerInputRef}
+          value={customer}
+          onChange={(event) => setCustomer(event.target.value)}
+        />
+      </div>
 
-      <label htmlFor="quantity">Quantity</label>
-      <input
-        id="quantity"
-        type="number"
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      />
+      <div className="field field-quantity">
+        <label htmlFor="quantity">Quantity</label>
+        <input
+          id="quantity"
+          type="number"
+          value={quantity}
+          onChange={(event) => setQuantity(Number(event.target.value))}
+        />
+      </div>
 
       <button type="submit" disabled={saving}>
         {saving ? "Adding..." : "Add order"}

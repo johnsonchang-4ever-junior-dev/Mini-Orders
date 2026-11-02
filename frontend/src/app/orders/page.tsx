@@ -55,8 +55,10 @@ export default function OrdersPage() {
     <main>
       <h1>Orders</h1>
       <OrderForm onAdd={addOrder} />
-      <SearchBox value={search} onChange={handleSearchChange} />
-      <StatusTabs value={status} onChange={handleStatusChange} />
+      <div className="toolbar">
+        <SearchBox value={search} onChange={handleSearchChange} />
+        <StatusTabs value={status} onChange={handleStatusChange} />
+      </div>
       {loading && <p className="muted">Loading orders...</p>}
       {error && <p className="error-text">Error: {error}</p>}
       {!loading && !error && (
