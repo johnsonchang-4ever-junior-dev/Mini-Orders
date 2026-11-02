@@ -11,7 +11,7 @@ interface OrderListProps {
 export default function OrderList({ orders, onDelete }: OrderListProps) {
   // Conditional rendering, Way 1: early return
   if (orders.length === 0) {
-    return <p className="muted">No orders yet.</p>;
+    return <p className="muted">No orders found.</p>;
   }
 
   // Fragment: return 2 elements without an extra <div>

@@ -22,3 +22,6 @@ export interface Order {
 export type NewOrder = Omit<Order, "id" | "status" | "createdAt">;
 
 
+
+// Which tab is selected: every status, plus "all"
+export type StatusFilter = "all" | OrderStatus;
