@@ -64,7 +64,7 @@ export default function OrderForm({ onAdd }: OrderFormProps) {
         {saving ? "Adding..." : "Add order"}
       </button>
 
-      {error && <p className="error-text">{error}</p>}
+      {error && <p className="error-text" role="alert">{error}</p>}
     </form>
   );
 }

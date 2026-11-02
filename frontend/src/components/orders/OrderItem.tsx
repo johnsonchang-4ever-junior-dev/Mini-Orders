@@ -28,7 +28,11 @@ function OrderItem({ order, onDelete }: OrderItemProps) {
       <div className="order-actions">
         <span className={`status status-${order.status}`}>{order.status}</span>
         {/* Arrow function: runs onDelete(order.id) only WHEN clicked */}
-        <button className="button-danger" onClick={() => onDelete(order.id)}>
+        <button
+          className="button-danger"
+          aria-label={`Delete ${order.customer}`}
+          onClick={() => onDelete(order.id)}
+        >
           Delete
         </button>
       </div>
